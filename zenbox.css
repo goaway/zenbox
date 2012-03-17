@@ -82,7 +82,8 @@
 }
 
 #zenbox-elements.visible.modal #zenbox-close {
-  opacity: 0;
+  /* disabled as hack to deal with modal(false) transition styling for now */
+  /* opacity: 0; */
   visibility: hidden;
 }
 
@@ -124,7 +125,7 @@
 #zenbox-elements.transitional.staging #zenbox-frame > *:first-child {
   opacity: 0;
   visibility: hidden;
-  -webkit-transition-duration: none;
+  -webkit-transition-duration: 0;
 }
 
 #zenbox-elements.visible #zenbox-close {
