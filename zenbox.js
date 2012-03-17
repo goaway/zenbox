@@ -53,13 +53,13 @@
             $(this).replaceWith(target);
           });
       }
-      target.css("opacity", 0); // this is a hack
+      elements.addClass("staging");
       frame.prepend(target).css({
         margin: Math.floor(-target[0].offsetHeight/2) + "px 0 0 " + Math.floor(-target[0].offsetWidth/2) + "px",
         height: target[0].offsetHeight,
         width:  target[0].offsetWidth
       });
-      target.css("opacity", ""); // this is a hack
+      elements.removeClass("staging");
     }
   ;
 
