@@ -1,6 +1,6 @@
 !function($) {
 
-  "use strict"
+  "use strict";
 
   if ($.zenbox !== undefined) return;
 
