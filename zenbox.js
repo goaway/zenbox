@@ -15,13 +15,12 @@
     _injectDom = function() {
       if ($("#zenbox-elements").length) return;
 
-      elements = $('<div id="zenbox-elements">');
-      backdrop = $('<div id="zenbox-backdrop">');
-      frame = $('<div id="zenbox-frame">');
-      close = $('<div id="zenbox-close">&times;</div>');
-
-      frame.append(close);
-      elements.append(backdrop, frame);
+      elements = $('<div id="zenbox-elements">').append(
+        backdrop = $('<div id="zenbox-backdrop">'),
+        frame = $('<div id="zenbox-frame">').append(
+          close = $('<div id="zenbox-close">&times;</div>')
+        )
+      );
       $('body').append(elements);
     },
 
