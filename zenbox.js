@@ -20,7 +20,8 @@
       frame = $('<div id="zenbox-frame">');
       close = $('<div id="zenbox-close">&times;</div>');
 
-      elements.append(backdrop, frame, close);
+      frame.append(close);
+      elements.append(backdrop, frame);
       $('body').append(elements);
     },
 

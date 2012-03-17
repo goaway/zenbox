@@ -27,6 +27,7 @@
   left: 50%;
 
   padding: 0;
+  -webkit-transform: translateZ(0); /* try to use acceleration if available */
 }
 
 #zenbox-close {
@@ -68,6 +69,11 @@
 #zenbox-elements #zenbox-frame > *:first-child {
   opacity: 1;
   visibility: visible;
+}
+
+#zenbox-elements #zenbox-frame > *:last-child {
+  opacity: 0;
+  visibility: hidden;
 }
 
 #zenbox-elements.visible  #zenbox-close {
@@ -121,6 +127,27 @@
   -webkit-transition-duration: none;
 }
 
+#zenbox-elements.visible #zenbox-close {
+  -webkit-transition: opacity 0 linear 350ms, visibility 0 linear 0;
+}
+
+#zenbox-elements.visible.transitional.staging #zenbox-close {
+  opacity: 0;
+  visibility: 0;
+  -webkit-transition: opacity 0 linear 0, visibility 0 linear 0;
+}
+
+#zenbox-elements.visible.transitional #zenbox-close {
+  -webkit-transition: opacity 0 linear 700ms, visibility 0 linear 0;
+}
+
+#zenbox-elements #zenbox-frame > #zenbox-close {
+  position: absolute;
+  top: -12px;
+  right: -12px;
+  left: auto;
+}
+
 #zenbox-close {
   color: #fff;
   background-color: #000;
@@ -129,11 +156,6 @@
   font-family: "Times";
   font-size: 16px;
   font-weight: bold;
-
-  position: absolute;
-  top: -12px;
-  right: -12px;
-  left: auto;
 
   height: 18px;
   width: 9px;
