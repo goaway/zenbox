@@ -108,7 +108,7 @@
 }
 
 #zenbox-elements.transitional #zenbox-frame {
-  -webkit-transition-timing-function: ease-out;
+  -webkit-transition-timing-function: cubic-bezier(0.366, 0, 0.634, 1);
   -webkit-transition-duration: 300ms;
   -webkit-transition-delay: 200ms;
   -webkit-transition-property: height, width, margin-left, margin-top;

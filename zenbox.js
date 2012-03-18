@@ -25,12 +25,7 @@
     },
 
     _attachListeners = function() {
-      backdrop.click(function (e) {
-        e.preventDefault();
-        if (isShown && !isModal) $.zenbox.close();
-      });
-
-      close.click(function(e) {
+      close.add(backdrop).click(function (e) {
         e.preventDefault();
         if (isShown && !isModal) $.zenbox.close();
       });
@@ -67,14 +62,9 @@
 
   $.zenbox.show = function(target) {
     if (!(target instanceof $)) target = $(target);
-    if (!isShown) {
-      isShown = true;
-      elements.addClass("visible");
-      _stage(target);
-    } else {
-      elements.addClass("transitional");
-      _stage(target);
-    }
+    elements.addClass(isShown ? "transitional" : "visible");
+    isShown = true;
+    _stage(target);
   };
 
   $.zenbox.close = function() {
