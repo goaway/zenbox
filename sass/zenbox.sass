@@ -1,5 +1,5 @@
 /*! =========================================================
- * zenbox v0.1.0
+ * zenbox v0.1.1
  * https://github.com/goaway/zenbox
  * =========================================================
  * Copyright 2012 Michael Schore
@@ -117,38 +117,39 @@ $content-transition-out: 200ms
 
 $frame-resize: 300ms
 
-#zenbox-backdrop
-  background-color: rgba(0,0,0,0.4)
-  @include transition(opacity $backdrop-fade-out $ease-out-cubic $frame-fade-out, visibility 0 linear $frame-fade-out + $backdrop-fade-out)
+#zenbox-elements.fancy
+  #zenbox-backdrop
+    background-color: rgba(0,0,0,0.4)
+    @include transition(opacity $backdrop-fade-out $ease-out-cubic $frame-fade-out, visibility 0 linear $frame-fade-out + $backdrop-fade-out)
 
-#zenbox-frame
-  background: #fff
-  @include box-shadow(0 0 15px 5px rgba(0,0,0,0.3))
-  @include transition(opacity $frame-fade-out $ease-in-out-sine 0, visibility 0 linear $frame-fade-out)
+  #zenbox-frame
+    background: #fff
+    @include box-shadow(0 0 15px 5px rgba(0,0,0,0.3))
+    @include transition(opacity $frame-fade-out $ease-in-out-sine 0, visibility 0 linear $frame-fade-out)
 
-#zenbox-close
-  color: #fff
-  background-color: #000
-  border: 2px solid #fff
-  line-height: 18px
-  font-family: Arial
-  font-size: 17px
-  font-weight: bold
+  #zenbox-frame > #zenbox-close
+    position: absolute
+    top: -12px
+    right: -12px
+    left: auto
 
-  height: 18px
-  width: 9px
-  padding: 0 5px 0px 4px
-  @include border-radius(12px)
-  @include box-shadow(0 2px 5px rgba(0,0,0,0.7))
+  #zenbox-close
+    color: #fff
+    background-color: #000
+    border: 2px solid #fff
+    line-height: 18px
+    font-family: Arial
+    font-size: 17px
+    font-weight: bold
 
-#zenbox-elements #zenbox-frame > #zenbox-close
-  position: absolute
-  top: -12px
-  right: -12px
-  left: auto
+    height: 18px
+    width: 9px
+    padding: 0 5px 0px 4px
+    @include border-radius(12px)
+    @include box-shadow(0 2px 5px rgba(0,0,0,0.7))
 
 
-#zenbox-elements.visible
+#zenbox-elements.fancy.visible
   #zenbox-backdrop
     @include transition(opacity $backdrop-fade-in $ease-out-cubic 0, visibility 0 linear 0)
 
@@ -159,7 +160,7 @@ $frame-resize: 300ms
     @include transition(opacity 0 linear $backdrop-fade-in + $frame-fade-in, visibility 0 linear 0)
 
 
-#zenbox-elements.visible.transitional
+#zenbox-elements.fancy.visible.transitional
   #zenbox-frame
     @include transition-timing-function($ease-in-out-sine)
     @include transition-duration($frame-resize)
@@ -176,7 +177,7 @@ $frame-resize: 300ms
     @include transition(opacity 0 linear $content-transition-out + $frame-resize + $content-transition-in, visibility 0 linear 0)
 
 
-#zenbox-elements.visible.transitional.staging
+#zenbox-elements.fancy.visible.transitional.staging
   #zenbox-frame > *:first-child
     opacity: 0
     visibility: hidden

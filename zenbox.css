@@ -1,5 +1,5 @@
 /* =========================================================
- * zenbox v0.1.0
+ * zenbox v0.1.1
  * https://github.com/goaway/zenbox
  * =========================================================
  * Copyright 2012 Michael Schore
@@ -94,7 +94,7 @@
 }
 
 /* Default Styling */
-#zenbox-backdrop {
+#zenbox-elements.fancy #zenbox-backdrop {
   background-color: rgba(0, 0, 0, 0.4);
   -webkit-transition: opacity 220ms cubic-bezier(0.215, 0.61, 0.355, 1) 300ms, visibility 0 linear 520ms;
   -moz-transition: opacity 220ms cubic-bezier(0.215, 0.61, 0.355, 1) 300ms, visibility 0 linear 520ms;
@@ -102,8 +102,7 @@
   -o-transition: opacity 220ms cubic-bezier(0.215, 0.61, 0.355, 1) 300ms, visibility 0 linear 520ms;
   transition: opacity 220ms cubic-bezier(0.215, 0.61, 0.355, 1) 300ms, visibility 0 linear 520ms;
 }
-
-#zenbox-frame {
+#zenbox-elements.fancy #zenbox-frame {
   background: white;
   -webkit-box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.3);
   -moz-box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.3);
@@ -114,8 +113,13 @@
   -o-transition: opacity 300ms cubic-bezier(0.366, 0, 0.634, 1) 0, visibility 0 linear 300ms;
   transition: opacity 300ms cubic-bezier(0.366, 0, 0.634, 1) 0, visibility 0 linear 300ms;
 }
-
-#zenbox-close {
+#zenbox-elements.fancy #zenbox-frame > #zenbox-close {
+  position: absolute;
+  top: -12px;
+  right: -12px;
+  left: auto;
+}
+#zenbox-elements.fancy #zenbox-close {
   color: white;
   background-color: black;
   border: 2px solid white;
@@ -136,28 +140,21 @@
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
 }
 
-#zenbox-elements #zenbox-frame > #zenbox-close {
-  position: absolute;
-  top: -12px;
-  right: -12px;
-  left: auto;
-}
-
-#zenbox-elements.visible #zenbox-backdrop {
+#zenbox-elements.fancy.visible #zenbox-backdrop {
   -webkit-transition: opacity 100ms cubic-bezier(0.215, 0.61, 0.355, 1) 0, visibility 0 linear 0;
   -moz-transition: opacity 100ms cubic-bezier(0.215, 0.61, 0.355, 1) 0, visibility 0 linear 0;
   -ms-transition: opacity 100ms cubic-bezier(0.215, 0.61, 0.355, 1) 0, visibility 0 linear 0;
   -o-transition: opacity 100ms cubic-bezier(0.215, 0.61, 0.355, 1) 0, visibility 0 linear 0;
   transition: opacity 100ms cubic-bezier(0.215, 0.61, 0.355, 1) 0, visibility 0 linear 0;
 }
-#zenbox-elements.visible #zenbox-frame {
+#zenbox-elements.fancy.visible #zenbox-frame {
   -webkit-transition: opacity 300ms cubic-bezier(0.366, 0, 0.634, 1) 100ms, visibility 0 linear 0;
   -moz-transition: opacity 300ms cubic-bezier(0.366, 0, 0.634, 1) 100ms, visibility 0 linear 0;
   -ms-transition: opacity 300ms cubic-bezier(0.366, 0, 0.634, 1) 100ms, visibility 0 linear 0;
   -o-transition: opacity 300ms cubic-bezier(0.366, 0, 0.634, 1) 100ms, visibility 0 linear 0;
   transition: opacity 300ms cubic-bezier(0.366, 0, 0.634, 1) 100ms, visibility 0 linear 0;
 }
-#zenbox-elements.visible #zenbox-close {
+#zenbox-elements.fancy.visible #zenbox-close {
   -webkit-transition: opacity 0 linear 400ms, visibility 0 linear 0;
   -moz-transition: opacity 0 linear 400ms, visibility 0 linear 0;
   -ms-transition: opacity 0 linear 400ms, visibility 0 linear 0;
@@ -165,7 +162,7 @@
   transition: opacity 0 linear 400ms, visibility 0 linear 0;
 }
 
-#zenbox-elements.visible.transitional #zenbox-frame {
+#zenbox-elements.fancy.visible.transitional #zenbox-frame {
   -webkit-transition-timing-function: cubic-bezier(0.366, 0, 0.634, 1);
   -moz-transition-timing-function: cubic-bezier(0.366, 0, 0.634, 1);
   -ms-transition-timing-function: cubic-bezier(0.366, 0, 0.634, 1);
@@ -187,21 +184,21 @@
   -o-transition-property: height, width, margin-left, margin-top;
   transition-property: height, width, margin-left, margin-top;
 }
-#zenbox-elements.visible.transitional #zenbox-frame > * {
+#zenbox-elements.fancy.visible.transitional #zenbox-frame > * {
   -webkit-transition: opacity 200ms cubic-bezier(0.366, 0, 0.634, 1) 0, visibility 0 linear 200ms;
   -moz-transition: opacity 200ms cubic-bezier(0.366, 0, 0.634, 1) 0, visibility 0 linear 200ms;
   -ms-transition: opacity 200ms cubic-bezier(0.366, 0, 0.634, 1) 0, visibility 0 linear 200ms;
   -o-transition: opacity 200ms cubic-bezier(0.366, 0, 0.634, 1) 0, visibility 0 linear 200ms;
   transition: opacity 200ms cubic-bezier(0.366, 0, 0.634, 1) 0, visibility 0 linear 200ms;
 }
-#zenbox-elements.visible.transitional #zenbox-frame > *:first-child {
+#zenbox-elements.fancy.visible.transitional #zenbox-frame > *:first-child {
   -webkit-transition: opacity 200ms cubic-bezier(0.366, 0, 0.634, 1) 500ms, visibility 0 linear 0;
   -moz-transition: opacity 200ms cubic-bezier(0.366, 0, 0.634, 1) 500ms, visibility 0 linear 0;
   -ms-transition: opacity 200ms cubic-bezier(0.366, 0, 0.634, 1) 500ms, visibility 0 linear 0;
   -o-transition: opacity 200ms cubic-bezier(0.366, 0, 0.634, 1) 500ms, visibility 0 linear 0;
   transition: opacity 200ms cubic-bezier(0.366, 0, 0.634, 1) 500ms, visibility 0 linear 0;
 }
-#zenbox-elements.visible.transitional #zenbox-close {
+#zenbox-elements.fancy.visible.transitional #zenbox-close {
   -webkit-transition: opacity 0 linear 700ms, visibility 0 linear 0;
   -moz-transition: opacity 0 linear 700ms, visibility 0 linear 0;
   -ms-transition: opacity 0 linear 700ms, visibility 0 linear 0;
@@ -209,7 +206,7 @@
   transition: opacity 0 linear 700ms, visibility 0 linear 0;
 }
 
-#zenbox-elements.visible.transitional.staging #zenbox-frame > *:first-child {
+#zenbox-elements.fancy.visible.transitional.staging #zenbox-frame > *:first-child {
   opacity: 0;
   visibility: hidden;
   -webkit-transition-duration: 0;
@@ -218,7 +215,7 @@
   -o-transition-duration: 0;
   transition-duration: 0;
 }
-#zenbox-elements.visible.transitional.staging #zenbox-close {
+#zenbox-elements.fancy.visible.transitional.staging #zenbox-close {
   opacity: 0;
   visibility: hidden;
   -webkit-transition: opacity 0 linear 0, visibility 0 linear 0;

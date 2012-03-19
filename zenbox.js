@@ -1,5 +1,5 @@
 /* =========================================================
- * zenbox v0.1.0
+ * zenbox v0.1.1
  * https://github.com/goaway/zenbox
  * =========================================================
  * Copyright 2012 Michael Schore
@@ -21,19 +21,16 @@
 
   "use strict";
 
-  if ($.zenbox !== undefined) return;
-
   var elements, backdrop, frame, close,
     isShown = false, isModal = false,
 
     _init = function() {
+      if ($("#zenbox-elements").length) return;
       _injectDom();
       _attachListeners();
     },
 
     _injectDom = function() {
-      if ($("#zenbox-elements").length) return;
-
       elements = $('<div id="zenbox-elements">').append(
         backdrop = $('<div id="zenbox-backdrop">'),
         frame = $('<div id="zenbox-frame">').append(
@@ -81,16 +78,25 @@
 
   $.zenbox = function() {};
 
-  $.zenbox.show = function(target) {
+  $.zenbox.defaults = {
+    modal: false,
+    style: "fancy"
+  };
+
+  $.zenbox.show = function(target, options) {
     if (!(target instanceof $)) target = $(target);
-    elements.addClass(isShown ? "transitional" : "visible");
+    options = $.extend({}, this.defaults, typeof options === 'object' && options);
+
+    if (!isShown) elements.attr('class', "visible " + options.style);
+    else elements.addClass("transitional");
+
+    this.modal(options.modal);
     isShown = true;
     _stage(target);
   };
 
   $.zenbox.close = function() {
     if (!isShown) return;
-
     isShown = false;
     elements.removeClass("visible transitional");
     if (frame.css('visibility') === 'visible') {
@@ -108,8 +114,8 @@
     else elements.removeClass("modal");
   };
 
-  $.fn.zenbox = function(method) {
-    if (method === "show") $.zenbox.show(this);
+  $.fn.zenbox = function(method, options) {
+    if (method === "show") $.zenbox.show(this, options);
     return this;
   };
 
