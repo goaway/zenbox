@@ -1,0 +1,175 @@
+@import "compass/css3/border-radius";
+@import "compass/css3/box-shadow";
+@import "compass/css3/transform";
+@import "compass/css3/transition";
+
+/* Operational */
+
+#zenbox-elements {
+  position: absolute;
+  z-index: 1080;
+}
+
+#zenbox-backdrop {
+  cursor: pointer;
+
+  opacity: 0;
+  visibility: hidden;
+
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+#zenbox-frame {
+  opacity: 0;
+  visibility: hidden;
+
+  position: fixed;
+  top: 50%;
+  left: 50%;
+
+  padding: 0;
+  /* try to use acceleration if available */
+  @include translateZ(0);
+}
+
+#zenbox-close {
+  cursor: pointer;
+
+  opacity: 0;
+  visibility: hidden;
+}
+
+#zenbox-marker {
+  display: none;
+}
+
+#zenbox-elements.visible #zenbox-backdrop {
+  opacity: 1;
+  visibility: visible;
+}
+
+#zenbox-elements.visible.modal #zenbox-backdrop {
+  cursor: default;
+}
+
+#zenbox-elements.visible #zenbox-frame {
+  opacity: 1;
+  visibility: visible;
+}
+
+#zenbox-elements #zenbox-frame > * {
+  opacity: 0;
+  visibility: hidden;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  margin: 0;
+}
+
+#zenbox-elements #zenbox-frame > *:first-child {
+  opacity: 1;
+  visibility: visible;
+}
+
+#zenbox-elements #zenbox-frame > *:last-child {
+  opacity: 0;
+  visibility: hidden;
+}
+
+#zenbox-elements.visible  #zenbox-close {
+  opacity: 1;
+  visibility: visible;
+}
+
+#zenbox-elements.visible.modal #zenbox-close {
+  /* disabled as hack to deal with modal(false) transition styling for now */
+  /* opacity: 0; */
+  visibility: hidden;
+}
+
+/* Default Styling */
+$ease-in-out-sine: cubic-bezier(0.366, 0, 0.634, 1);
+$ease-out-cubic: cubic-bezier(0.215, 0.610, 0.355, 1);
+
+#zenbox-backdrop {
+  background-color: rgba(0,0,0,0.4);
+  @include transition(opacity 220ms $ease-out-cubic 300ms, visibility 270ms linear 300ms);
+}
+
+#zenbox-elements.visible #zenbox-backdrop {
+  @include transition(opacity 100ms $ease-out-cubic 0, visibility 0 linear 0);
+}
+
+#zenbox-frame {
+  background: #fff;
+  @include box-shadow(0 0 15px 5px rgba(0,0,0,0.3));
+  @include transition(opacity 300ms $ease-in-out-sine 0, visibility 350ms linear 0);
+}
+
+#zenbox-elements.visible #zenbox-frame {
+  @include transition(opacity 300ms $ease-in-out-sine 50ms, visibility 0 linear 0);
+}
+
+#zenbox-elements.transitional #zenbox-frame {
+  @include transition-timing-function($ease-in-out-sine);
+  @include transition-duration(300ms);
+  @include transition-delay(200ms);
+  @include transition-property("height, width, margin-left, margin-top");
+}
+
+#zenbox-elements.transitional #zenbox-frame > * {
+  @include transition(opacity 200ms $ease-in-out-sine 0, visibility 250ms linear 0);
+}
+
+#zenbox-elements.transitional #zenbox-frame > *:first-child {
+  @include transition(opacity 200ms $ease-in-out-sine 500ms, visibility 0 linear 0);
+}
+
+#zenbox-elements.transitional.staging #zenbox-frame > *:first-child {
+  opacity: 0;
+  visibility: hidden;
+  @include transition-duration(0);
+}
+
+#zenbox-elements.visible #zenbox-close {
+  @include transition(opacity 0 linear 350ms, visibility 0 linear 0);
+}
+
+#zenbox-elements.visible.transitional.staging #zenbox-close {
+  opacity: 0;
+  visibility: 0;
+  @include transition(opacity 0 linear 0, visibility 0 linear 0);
+}
+
+#zenbox-elements.visible.transitional #zenbox-close {
+  @include transition(opacity 0 linear 700ms, visibility 0 linear 0);
+}
+
+#zenbox-elements #zenbox-frame > #zenbox-close {
+  position: absolute;
+  top: -12px;
+  right: -12px;
+  left: auto;
+}
+
+#zenbox-close {
+  color: #fff;
+  background-color: #000;
+  border: 2px solid #fff;
+  line-height: 18px;
+  font-family: "Times";
+  font-size: 16px;
+  font-weight: bold;
+
+  height: 18px;
+  width: 9px;
+  border-radius: 12px;
+  padding: 0 5px 1px;
+  @include box-shadow(0 2px 5px rgba(0,0,0,0.7));
+}
