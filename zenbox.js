@@ -56,8 +56,8 @@
     },
 
     _stage = function(target) {
-      if (target.is('#zenbox-frame > *:first-child') === true) return;
-      if (target.parent().is('#zenbox-frame') === false) {
+      if (target[0] === frame.children()[0]) return;
+      if (target.parent()[0] !== frame[0]) {
         $('<div class="zenbox-marker" style="display:none;">')
           .insertBefore(target)
           .on('zenbox-cleanup', function() {
