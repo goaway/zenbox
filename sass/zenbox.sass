@@ -15,6 +15,11 @@
   left: 0
   visibility: hidden
 
+#zenbox-close
+  cursor: pointer
+  opacity: 0
+  visibility: hidden
+
 #zenbox-frame
   opacity: 0
   padding: 0
@@ -25,13 +30,9 @@
   /* try to use acceleration if available */
   @include translateZ(0)
 
-#zenbox-close
-  cursor: pointer
-  opacity: 0
-  visibility: hidden
-
 #zenbox-marker
   display: none
+
 
 #zenbox-elements
   position: absolute
@@ -46,40 +47,40 @@
     left: 0
     visibility: hidden
 
-    &:first-child
-      opacity: 1
-      visibility: visible
+  #zenbox-frame > *:first-child
+    opacity: 1
+    visibility: visible
 
-    // forces last-child to be hidden if it's the only child
-    &:last-child
-      opacity: 0
-      visibility: hidden
-
-
-  // when a zenbox is being displayed
-  &.visible
-    #zenbox-backdrop
-      opacity: 1
-      visibility: visible
-
-    #zenbox-frame
-      opacity: 1
-      visibility: visible
-
-    #zenbox-close
-      opacity: 1
-      visibility: visible
+  // forces last-child to be hidden if it's the only child
+  #zenbox-frame > *:last-child
+    opacity: 0
+    visibility: hidden
 
 
-  // when a modal zenbox is being displayed
-  &.visible.modal 
-    #zenbox-backdrop
-      cursor: default
+// when a zenbox is being displayed
+#zenbox-elements.visible
+  #zenbox-backdrop
+    opacity: 1
+    visibility: visible
 
-    #zenbox-close
-      /* disabled as hack to deal with modal(false) transition styling for now */
-      /* opacity: 0 */
-      visibility: hidden
+  #zenbox-frame
+    opacity: 1
+    visibility: visible
+
+  #zenbox-close
+    opacity: 1
+    visibility: visible
+
+
+// when a modal zenbox is being displayed
+#zenbox-elements.visible.modal 
+  #zenbox-backdrop
+    cursor: default
+
+  #zenbox-close
+    /* disabled as hack to deal with modal(false) transition styling for now */
+    /* opacity: 0 */
+    visibility: hidden
 
 
 /* Default Styling */
@@ -101,60 +102,6 @@ $frame-resize-duration: 0
   background-color: rgba(0,0,0,0.4)
   @include transition(opacity 220ms $ease-out-cubic 300ms, visibility 270ms linear 300ms)
 
-#zenbox-frame
-  background: #fff
-  @include box-shadow(0 0 15px 5px rgba(0,0,0,0.3))
-  @include transition(opacity 300ms $ease-in-out-sine 0, visibility 350ms linear 0)
-
-#zenbox-elements.visible
-  #zenbox-backdrop
-    @include transition(opacity 100ms $ease-out-cubic 0, visibility 0 linear 0)
-
-  #zenbox-frame
-    @include transition(opacity 300ms $ease-in-out-sine 50ms, visibility 0 linear 0)
-
-#zenbox-elements.transitional #zenbox-frame
-  @include transition-timing-function($ease-in-out-sine)
-  @include transition-duration(300ms)
-  @include transition-delay(200ms)
-  @include transition-property("height, width, margin-left, margin-top")
-
-
-#zenbox-elements.transitional #zenbox-frame > *
-  @include transition(opacity 200ms $ease-in-out-sine 0, visibility 250ms linear 0)
-
-
-#zenbox-elements.transitional #zenbox-frame > *:first-child
-  @include transition(opacity 200ms $ease-in-out-sine 500ms, visibility 0 linear 0)
-
-
-#zenbox-elements.transitional.staging #zenbox-frame > *:first-child
-  opacity: 0
-  visibility: hidden
-  @include transition-duration(0)
-
-
-#zenbox-elements.visible #zenbox-close
-  @include transition(opacity 0 linear 350ms, visibility 0 linear 0)
-
-
-#zenbox-elements.visible.transitional.staging #zenbox-close
-  opacity: 0
-  visibility: 0
-  @include transition(opacity 0 linear 0, visibility 0 linear 0)
-
-
-#zenbox-elements.visible.transitional #zenbox-close
-  @include transition(opacity 0 linear 700ms, visibility 0 linear 0)
-
-
-#zenbox-elements #zenbox-frame > #zenbox-close
-  position: absolute
-  top: -12px
-  right: -12px
-  left: auto
-
-
 #zenbox-close
   color: #fff
   background-color: #000
@@ -169,3 +116,54 @@ $frame-resize-duration: 0
   padding: 0 5px 1px
   @include border-radius(12px)
   @include box-shadow(0 2px 5px rgba(0,0,0,0.7))
+
+#zenbox-elements #zenbox-frame > #zenbox-close
+  position: absolute
+  top: -12px
+  right: -12px
+  left: auto
+
+#zenbox-frame
+  background: #fff
+  @include box-shadow(0 0 15px 5px rgba(0,0,0,0.3))
+  @include transition(opacity 300ms $ease-in-out-sine 0, visibility 350ms linear 0)
+
+
+#zenbox-elements.visible
+  #zenbox-backdrop
+    @include transition(opacity 100ms $ease-out-cubic 0, visibility 0 linear 0)
+
+  #zenbox-close
+    @include transition(opacity 0 linear 350ms, visibility 0 linear 0)
+
+  #zenbox-frame
+    @include transition(opacity 300ms $ease-in-out-sine 50ms, visibility 0 linear 0)
+
+
+#zenbox-elements.visible.transitional
+  #zenbox-frame
+    @include transition-timing-function($ease-in-out-sine)
+    @include transition-duration(300ms)
+    @include transition-delay(200ms)
+    @include transition-property("height, width, margin-left, margin-top")
+
+  #zenbox-frame > *
+    @include transition(opacity 200ms $ease-in-out-sine 0, visibility 250ms linear 0)
+
+  #zenbox-frame > *:first-child
+    @include transition(opacity 200ms $ease-in-out-sine 500ms, visibility 0 linear 0)
+
+  #zenbox-close
+    @include transition(opacity 0 linear 700ms, visibility 0 linear 0)
+
+
+#zenbox-elements.visible.transitional.staging
+  #zenbox-close
+    opacity: 0
+    visibility: hidden
+    @include transition(opacity 0 linear 0, visibility 0 linear 0)
+
+  #zenbox-frame > *:first-child
+    opacity: 0
+    visibility: hidden
+    @include transition-duration(0)
