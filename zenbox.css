@@ -1,27 +1,22 @@
 /* Operational */
-#zenbox-elements {
-  position: absolute;
-  z-index: 1080;
-}
-
 #zenbox-backdrop {
   cursor: pointer;
   opacity: 0;
-  visibility: hidden;
   position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
+  visibility: hidden;
 }
 
 #zenbox-frame {
   opacity: 0;
-  visibility: hidden;
+  padding: 0;
   position: fixed;
   top: 50%;
   left: 50%;
-  padding: 0;
+  visibility: hidden;
   /* try to use acceleration if available */
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
@@ -37,47 +32,44 @@
   display: none;
 }
 
-#zenbox-elements.visible #zenbox-backdrop {
-  opacity: 1;
-  visibility: visible;
+#zenbox-elements {
+  position: absolute;
+  z-index: 1080;
 }
-
-#zenbox-elements.visible.modal #zenbox-backdrop {
-  cursor: default;
-}
-
-#zenbox-elements.visible #zenbox-frame {
-  opacity: 1;
-  visibility: visible;
-}
-
 #zenbox-elements #zenbox-frame > * {
+  margin: 0;
   opacity: 0;
-  visibility: hidden;
   position: absolute;
   top: 0;
   left: 0;
-  margin: 0;
+  visibility: hidden;
 }
-
 #zenbox-elements #zenbox-frame > *:first-child {
   opacity: 1;
   visibility: visible;
 }
-
 #zenbox-elements #zenbox-frame > *:last-child {
   opacity: 0;
   visibility: hidden;
 }
-
+#zenbox-elements.visible #zenbox-backdrop {
+  opacity: 1;
+  visibility: visible;
+}
+#zenbox-elements.visible #zenbox-frame {
+  opacity: 1;
+  visibility: visible;
+}
 #zenbox-elements.visible #zenbox-close {
   opacity: 1;
   visibility: visible;
 }
-
+#zenbox-elements.visible.modal #zenbox-backdrop {
+  cursor: default;
+}
 #zenbox-elements.visible.modal #zenbox-close {
   /* disabled as hack to deal with modal(false) transition styling for now */
-  /* opacity: 0; */
+  /* opacity: 0 */
   visibility: hidden;
 }
 
@@ -91,16 +83,8 @@
   transition: opacity 220ms cubic-bezier(0.215, 0.61, 0.355, 1) 300ms, visibility 270ms linear 300ms;
 }
 
-#zenbox-elements.visible #zenbox-backdrop {
-  -webkit-transition: opacity 100ms cubic-bezier(0.215, 0.61, 0.355, 1) 0, visibility 0 linear 0;
-  -moz-transition: opacity 100ms cubic-bezier(0.215, 0.61, 0.355, 1) 0, visibility 0 linear 0;
-  -ms-transition: opacity 100ms cubic-bezier(0.215, 0.61, 0.355, 1) 0, visibility 0 linear 0;
-  -o-transition: opacity 100ms cubic-bezier(0.215, 0.61, 0.355, 1) 0, visibility 0 linear 0;
-  transition: opacity 100ms cubic-bezier(0.215, 0.61, 0.355, 1) 0, visibility 0 linear 0;
-}
-
 #zenbox-frame {
-  background: #fff;
+  background: white;
   -webkit-box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.3);
   -moz-box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.3);
   box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.3);
@@ -111,6 +95,13 @@
   transition: opacity 300ms cubic-bezier(0.366, 0, 0.634, 1) 0, visibility 350ms linear 0;
 }
 
+#zenbox-elements.visible #zenbox-backdrop {
+  -webkit-transition: opacity 100ms cubic-bezier(0.215, 0.61, 0.355, 1) 0, visibility 0 linear 0;
+  -moz-transition: opacity 100ms cubic-bezier(0.215, 0.61, 0.355, 1) 0, visibility 0 linear 0;
+  -ms-transition: opacity 100ms cubic-bezier(0.215, 0.61, 0.355, 1) 0, visibility 0 linear 0;
+  -o-transition: opacity 100ms cubic-bezier(0.215, 0.61, 0.355, 1) 0, visibility 0 linear 0;
+  transition: opacity 100ms cubic-bezier(0.215, 0.61, 0.355, 1) 0, visibility 0 linear 0;
+}
 #zenbox-elements.visible #zenbox-frame {
   -webkit-transition: opacity 300ms cubic-bezier(0.366, 0, 0.634, 1) 50ms, visibility 0 linear 0;
   -moz-transition: opacity 300ms cubic-bezier(0.366, 0, 0.634, 1) 50ms, visibility 0 linear 0;
@@ -202,17 +193,21 @@
 }
 
 #zenbox-close {
-  color: #fff;
-  background-color: #000;
-  border: 2px solid #fff;
+  color: white;
+  background-color: black;
+  border: 2px solid white;
   line-height: 18px;
   font-family: "Times";
   font-size: 16px;
   font-weight: bold;
   height: 18px;
   width: 9px;
-  border-radius: 12px;
   padding: 0 5px 1px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
+  border-radius: 12px;
   -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
   -moz-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
