@@ -1,5 +1,5 @@
 /*! =========================================================
- * zenbox v0.1.1
+ * zenbox v0.1.2
  * https://github.com/goaway/zenbox
  * =========================================================
  * Copyright 2012 Michael Schore
@@ -120,12 +120,12 @@ $frame-resize: 300ms
 #zenbox-elements.fancy
   #zenbox-backdrop
     background-color: rgba(0,0,0,0.4)
-    @include transition(opacity $backdrop-fade-out $ease-out-cubic $frame-fade-out, visibility 0 linear $frame-fade-out + $backdrop-fade-out)
+    @include transition(opacity $backdrop-fade-out $ease-out-cubic $frame-fade-out, visibility 0ms linear $frame-fade-out + $backdrop-fade-out)
 
   #zenbox-frame
     background: #fff
     @include box-shadow(0 0 15px 5px rgba(0,0,0,0.3))
-    @include transition(opacity $frame-fade-out $ease-in-out-sine 0, visibility 0 linear $frame-fade-out)
+    @include transition(opacity $frame-fade-out $ease-in-out-sine 0ms, visibility 0ms linear $frame-fade-out)
 
   #zenbox-frame > #zenbox-close
     position: absolute
@@ -151,13 +151,13 @@ $frame-resize: 300ms
 
 #zenbox-elements.fancy.visible
   #zenbox-backdrop
-    @include transition(opacity $backdrop-fade-in $ease-out-cubic 0, visibility 0 linear 0)
+    @include transition(opacity $backdrop-fade-in $ease-out-cubic 0ms, visibility 0ms linear 0ms)
 
   #zenbox-frame
-    @include transition(opacity $frame-fade-in $ease-in-out-sine $backdrop-fade-in, visibility 0 linear 0)
+    @include transition(opacity $frame-fade-in $ease-in-out-sine $backdrop-fade-in, visibility 0ms linear 0ms)
 
   #zenbox-close
-    @include transition(opacity 0 linear $backdrop-fade-in + $frame-fade-in, visibility 0 linear 0)
+    @include transition(opacity 0ms linear $backdrop-fade-in + $frame-fade-in, visibility 0ms linear 0ms)
 
 
 #zenbox-elements.fancy.visible.transitional
@@ -168,22 +168,22 @@ $frame-resize: 300ms
     @include transition-property("height, width, margin-left, margin-top")
 
   #zenbox-frame > *
-    @include transition(opacity $content-transition-out $ease-in-out-sine 0, visibility 0 linear $content-transition-out)
+    @include transition(opacity $content-transition-out $ease-in-out-sine 0ms, visibility 0ms linear $content-transition-out)
 
   #zenbox-frame > *:first-child
-    @include transition(opacity $content-transition-in $ease-in-out-sine $content-transition-out + $frame-resize, visibility 0 linear 0)
+    @include transition(opacity $content-transition-in $ease-in-out-sine $content-transition-out + $frame-resize, visibility 0ms linear 0ms)
 
   #zenbox-close
-    @include transition(opacity 0 linear $content-transition-out + $frame-resize + $content-transition-in, visibility 0 linear 0)
+    @include transition(opacity 0ms linear $content-transition-out + $frame-resize + $content-transition-in, visibility 0ms linear 0ms)
 
 
 #zenbox-elements.fancy.visible.transitional.staging
   #zenbox-frame > *:first-child
     opacity: 0
     visibility: hidden
-    @include transition-duration(0)
+    @include transition-duration(0ms)
 
   #zenbox-close
     opacity: 0
     visibility: hidden
-    @include transition(opacity 0 linear 0, visibility 0 linear 0)
+    @include transition(opacity 0ms linear 0ms, visibility 0ms linear 0ms)
