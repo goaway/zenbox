@@ -137,17 +137,21 @@ $frame-resize: 300ms
     color: #fff
     background-color: #000
     border: 2px solid #fff
+    /* fixes alignment in firefox */
+    letter-spacing: -1px
+    /* but breaks it in ios */
+    @media screen and (-webkit-min-device-pixel-ratio: 2)
+      letter-spacing: 0
     line-height: 18px
     font-family: Arial
     font-size: 17px
     font-weight: bold
-
+    text-align: center
     height: 18px
-    width: 9px
-    padding: 0 5px 0px 4px
+    width: 18px
+    padding: 0
     @include border-radius(12px)
     @include box-shadow(0 2px 5px rgba(0,0,0,0.7))
-
 
 #zenbox-elements.fancy.visible
   #zenbox-backdrop
