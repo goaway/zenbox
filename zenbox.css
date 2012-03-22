@@ -35,9 +35,6 @@
   top: 50%;
   left: 50%;
   visibility: hidden;
-  /* try to use acceleration if available */
-  -webkit-transform: translateZ(0);
-  transform: translateZ(0);
 }
 
 #zenbox-close {

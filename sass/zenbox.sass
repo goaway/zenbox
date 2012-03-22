@@ -42,8 +42,10 @@
   top: 50%
   left: 50%
   visibility: hidden
-  /* try to use acceleration if available */
-  @include translateZ(0)
+  // try to use acceleration if available
+  // this currently causes a bug on webkit browsers when displaying a fixed position iframe
+  //  while the page is scrolled down
+  // @include translateZ(0)
 
 #zenbox-close
   cursor: pointer
