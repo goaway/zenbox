@@ -237,11 +237,11 @@
 /* Bootsy Styling */
 #zenbox-elements.bootsy #zenbox-backdrop {
   background-color: rgba(0, 0, 0, 0.8);
-  -webkit-transition: opacity 300ms cubic-bezier(0.215, 0.61, 0.355, 1) 300ms, visibility 0ms linear 600ms;
-  -moz-transition: opacity 300ms cubic-bezier(0.215, 0.61, 0.355, 1) 300ms, visibility 0ms linear 600ms;
-  -ms-transition: opacity 300ms cubic-bezier(0.215, 0.61, 0.355, 1) 300ms, visibility 0ms linear 600ms;
-  -o-transition: opacity 300ms cubic-bezier(0.215, 0.61, 0.355, 1) 300ms, visibility 0ms linear 600ms;
-  transition: opacity 300ms cubic-bezier(0.215, 0.61, 0.355, 1) 300ms, visibility 0ms linear 600ms;
+  -webkit-transition: opacity 270ms cubic-bezier(0.215, 0.61, 0.355, 1) 300ms, visibility 0ms linear 570ms;
+  -moz-transition: opacity 270ms cubic-bezier(0.215, 0.61, 0.355, 1) 300ms, visibility 0ms linear 570ms;
+  -ms-transition: opacity 270ms cubic-bezier(0.215, 0.61, 0.355, 1) 300ms, visibility 0ms linear 570ms;
+  -o-transition: opacity 270ms cubic-bezier(0.215, 0.61, 0.355, 1) 300ms, visibility 0ms linear 570ms;
+  transition: opacity 270ms cubic-bezier(0.215, 0.61, 0.355, 1) 300ms, visibility 0ms linear 570ms;
 }
 #zenbox-elements.bootsy #zenbox-frame {
   background: white;
