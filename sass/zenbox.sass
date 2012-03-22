@@ -19,6 +19,7 @@
 
 @import "compass/css3/border-radius"
 @import "compass/css3/box-shadow"
+@import "compass/css3/text-shadow"
 @import "compass/css3/transform"
 @import "compass/css3/transition"
 
@@ -105,6 +106,8 @@
 /* Default Styling */
 $ease-in-out-sine: cubic-bezier(0.366, 0, 0.634, 1)
 $ease-out-cubic: cubic-bezier(0.215, 0.610, 0.355, 1)
+$ease-in-slide: cubic-bezier(0.43, 0.1, 1, 0)
+$ease-out-slide: cubic-bezier(0.1, 0.43, 0, 1)
 
 $backdrop-fade-in: 100ms
 $backdrop-fade-out: 220ms
@@ -182,6 +185,105 @@ $frame-resize: 300ms
 
 
 #zenbox-elements.fancy.visible.transitional.staging
+  #zenbox-frame > *:first-child
+    opacity: 0
+    visibility: hidden
+    @include transition-duration(0ms)
+
+  #zenbox-close
+    opacity: 0
+    visibility: hidden
+    @include transition(opacity 0ms linear 0ms, visibility 0ms linear 0ms)
+
+
+/* Bootsy Styling */
+$backdrop-fade-in: 150ms
+$backdrop-fade-out: 300ms
+
+$frame-fade-in: 300ms
+$frame-fade-out: 300ms
+
+$content-transition-in: 200ms
+$content-transition-out: 200ms
+
+$frame-resize: 300ms
+
+#zenbox-elements.bootsy
+  #zenbox-backdrop
+    background-color: rgba(0,0,0,0.8)
+    @include transition(opacity $backdrop-fade-out $ease-out-cubic $frame-fade-out, visibility 0ms linear $frame-fade-out + $backdrop-fade-out)
+
+  #zenbox-frame
+    background: #fff
+    top: 0%
+    @include border-radius(6px)
+    @include transition(opacity $frame-fade-out $ease-in-out-sine 0ms, top $frame-fade-out $ease-in-slide 0ms, visibility 0ms linear $frame-fade-out)
+
+  #zenbox-frame > #zenbox-close
+    position: absolute
+    top: 12px
+    right: 12px
+    left: auto
+
+  #zenbox-close
+    color: rgba(0,0,0,0.2)
+    /* fixes alignment in firefox */
+    letter-spacing: -1px
+    /* but breaks it in ios */
+    @media screen and (-webkit-min-device-pixel-ratio: 2)
+      letter-spacing: 0
+    line-height: 18px
+    font-family: Arial
+    font-size: 21px
+    font-weight: normal
+    text-align: center
+    height: 18px
+    width: 18px
+    padding: 0
+    @include text-shadow(0 1px 0 #fff)
+
+    &:hover
+      color: rgba(0,0,0,0.4)
+
+
+#zenbox-elements.bootsy.visible
+  #zenbox-backdrop
+    @include transition(opacity $backdrop-fade-in $ease-out-cubic 0ms, visibility 0ms linear 0ms)
+
+  #zenbox-frame
+    top: 50%
+    @include transition(opacity $frame-fade-in $ease-in-out-sine $backdrop-fade-in, top $frame-fade-in $ease-out-slide $backdrop-fade-in, visibility 0ms linear 0ms)
+
+  #zenbox-close
+    @include transition(opacity 0ms linear $backdrop-fade-in + $frame-fade-in, visibility 0ms linear 0ms)
+
+
+#zenbox-elements.bootsy.visible.staging
+  #zenbox-frame
+    opacity: 0
+    top: 0%
+    visibility: hidden
+    @include transition-duration(0ms)
+
+
+#zenbox-elements.bootsy.visible.transitional
+  #zenbox-frame
+    @include transition-timing-function($ease-in-out-sine)
+    @include transition-duration($frame-resize)
+    @include transition-delay($content-transition-out)
+    @include transition-property("height, width, margin-left, margin-top")
+
+  #zenbox-frame > *
+    @include transition(opacity $content-transition-out $ease-in-out-sine 0ms, visibility 0ms linear $content-transition-out)
+
+  #zenbox-frame > *:first-child
+    @include transition(opacity $content-transition-in $ease-in-out-sine $content-transition-out + $frame-resize, visibility 0ms linear 0ms)
+
+  #zenbox-close
+    @include transition(opacity 0ms linear $content-transition-out + $frame-resize + $content-transition-in, visibility 0ms linear 0ms)
+
+
+#zenbox-elements.bootsy.visible.transitional.staging
   #zenbox-frame > *:first-child
     opacity: 0
     visibility: hidden
