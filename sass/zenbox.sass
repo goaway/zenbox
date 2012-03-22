@@ -217,6 +217,7 @@ $frame-resize: 300ms
     background: #fff
     top: 0%
     @include border-radius(6px)
+    @include box-shadow(0 3px 7px rgba(0,0,0,0.3))
     @include transition(opacity $frame-fade-out $ease-in-out-sine 0ms, top $frame-fade-out $ease-in-slide 0ms, visibility 0ms linear $frame-fade-out)
 
   #zenbox-frame > #zenbox-close
@@ -260,9 +261,7 @@ $frame-resize: 300ms
 
 #zenbox-elements.bootsy.visible.staging
   #zenbox-frame
-    opacity: 0
     top: 0%
-    visibility: hidden
     @include transition-duration(0ms)
 
 
@@ -284,6 +283,9 @@ $frame-resize: 300ms
 
 
 #zenbox-elements.bootsy.visible.transitional.staging
+  #zenbox-frame
+    top: 50%
+
   #zenbox-frame > *:first-child
     opacity: 0
     visibility: hidden
