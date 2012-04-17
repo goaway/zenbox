@@ -5,11 +5,12 @@ Zenbox is a beautiful and simple lightbox, styled and animated via pure css, mak
 ## Features
 
 - Pure CSS presentation: all zenbox presentational aspects are handled via pure css, and set up to be easy to override
-- Lightweight: zenbox is half the size of Twitter's bootstrap modal and less than a tenth the size of fancybox!
+- Lightweight: zenbox is half the size of Twitter's bootstrap modal and less than a tenth(!) the size of fancybox
 - Beautiful: zenbox comes with several complete css themes, including ones that emulate other popular lightbox packages
 - Optimized: the included styles target the latest browsers, but are designed to degrade gracefully for older versions
 - Simple: built with the philosophy that less is more, zenbox aims to give you exactly what you need and nothing that you don't
 - For developers and everyone else too: zenbox is easy enough for anyone to use, but completely configurable for your next-gen fancy web apps
+- Free: licensed under the Apache license, use it for whatever and enjoy
 
 ## Quickstart
 
