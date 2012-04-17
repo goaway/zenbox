@@ -23,6 +23,7 @@
 
   var elements, backdrop, frame, close,
     isShown = false, isModal = false,
+    transitionEnd = "TransitionEnd webkitTransitionEnd transitionend oTransitionEnd",
 
     _init = function() {
       if ($("#zenbox-elements").length) return;
@@ -70,9 +71,7 @@
         height: target[0].offsetHeight,
         width:  target[0].offsetWidth
       });
-      setTimeout(function() { /* hack to get staging styles to render in opera */
-        elements.removeClass("staging");
-      }, 50);
+      elements.removeClass("staging");
     }
   ;
 
@@ -100,7 +99,7 @@
     isShown = false;
     elements.removeClass("visible transitional");
     if (frame.css('visibility') === 'visible') {
-      frame.one("TransitionEnd webkitTransitionEnd transitionend oTransitionEnd", function() {
+      frame.one(transitionEnd, function() {
         $.event.trigger('zenbox-cleanup');
       });
     } else {
