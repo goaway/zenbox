@@ -1,5 +1,5 @@
 /* =========================================================
- * zenbox v0.1.5
+ * zenbox v0.2.0
  * https://github.com/goaway/zenbox
  * =========================================================
  * Copyright 2012 Michael Schore
@@ -23,7 +23,7 @@
 
   var elements, backdrop, frame, close,
     isShown = false, isModal = false,
-    transitionEnd = "TransitionEnd webkitTransitionEnd transitionend oTransitionEnd",
+    transitionEnd = "TransitionEnd webkitTransitionEnd transitionend oTransitionEnd MSTransitionEnd",
 
     _init = function() {
       if ($("#zenbox-elements").length) return;
@@ -42,7 +42,7 @@
     },
 
     _attachListeners = function() {
-      close.add(backdrop).click(function (e) {
+      close.add(backdrop).click(function(e) {
         e.preventDefault();
         if (isShown && !isModal) $.zenbox.close();
       });
@@ -61,7 +61,7 @@
       if (target.parent()[0] !== frame[0]) {
         $('<div class="zenbox-marker" style="display:none;">')
           .insertBefore(target)
-          .on('zenbox-cleanup', function() {
+          .on('zenbox-closed', function() {
             $(this).replaceWith(target);
           });
       }
@@ -84,6 +84,7 @@
 
   $.zenbox.show = function(target, options) {
     if (!(target instanceof $)) target = $(target);
+    $.event.trigger('zenbox-show', {target: target});
     options = $.extend({}, this.defaults, typeof options === 'object' && options);
 
     if (!isShown) elements.attr('class', "visible " + options.style);
@@ -96,14 +97,15 @@
 
   $.zenbox.close = function() {
     if (!isShown) return;
+    $.event.trigger('zenbox-close');
     isShown = false;
     elements.removeClass("visible transitional");
     if (frame.css('visibility') === 'visible') {
       frame.one(transitionEnd, function() {
-        $.event.trigger('zenbox-cleanup');
+        $.event.trigger('zenbox-closed');
       });
     } else {
-      $.event.trigger('zenbox-cleanup');
+      $.event.trigger('zenbox-closed');
     }
   };
 
