@@ -93,6 +93,7 @@
     this.modal(options.modal);
     isShown = true;
     _stage(target);
+    target.trigger('zenbox-shown');
   };
 
   $.zenbox.close = function() {
