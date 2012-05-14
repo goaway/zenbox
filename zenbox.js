@@ -61,7 +61,7 @@
       if (target.parent()[0] !== frame[0]) {
         var marker = $('<div class="zenbox-marker" style="display:none;">')
           .insertBefore(target);
-        $(document).on('zenbox-closed', function() {
+        $(document).one('zenbox-closed', function() {
           $(marker).replaceWith(target);
         });
       }
