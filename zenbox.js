@@ -59,11 +59,11 @@
     _stage = function(target) {
       if (target[0] === frame.children()[0]) return;
       if (target.parent()[0] !== frame[0]) {
-        $('<div class="zenbox-marker" style="display:none;">')
-          .insertBefore(target)
-          .on('zenbox-closed', function() {
-            $(this).replaceWith(target);
-          });
+        var marker = $('<div class="zenbox-marker" style="display:none;">')
+          .insertBefore(target);
+        $(document).one('zenbox-closed', function() {
+          $(marker).replaceWith(target);
+        });
       }
       elements.addClass("staging");
       frame.prepend(target).css({
@@ -84,7 +84,7 @@
 
   $.zenbox.show = function(target, options) {
     if (!(target instanceof $)) target = $(target);
-    $.event.trigger('zenbox-show', {target: target});
+    target.trigger('zenbox-show');
     options = $.extend({}, this.defaults, typeof options === 'object' && options);
 
     if (!isShown) elements.attr('class', "visible " + options.style);
@@ -97,15 +97,16 @@
 
   $.zenbox.close = function() {
     if (!isShown) return;
-    $.event.trigger('zenbox-close');
+    var target = frame.children().first();
+    target.trigger('zenbox-close');
     isShown = false;
     elements.removeClass("visible transitional");
     if (frame.css('visibility') === 'visible') {
       frame.one(transitionEnd, function() {
-        $.event.trigger('zenbox-closed');
+        target.trigger('zenbox-closed');
       });
     } else {
-      $.event.trigger('zenbox-closed');
+      target.trigger('zenbox-closed');
     }
   };
 
