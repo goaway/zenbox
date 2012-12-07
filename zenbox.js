@@ -63,6 +63,7 @@
           .insertBefore(target);
         $(document).one('zenbox-closed', function() {
           $(marker).replaceWith(target);
+          $(target).trigger('zenbox-reset');
         });
       }
       elements.addClass("staging");
@@ -88,7 +89,10 @@
     options = $.extend({}, this.defaults, typeof options === 'object' && options);
 
     if (!isShown) elements.attr('class', "visible " + options.style);
-    else elements.addClass("transitional");
+    else {
+      $(frame.children()[0]).trigger('zenbox-transition')
+      elements.addClass("transitional");
+    }
 
     this.modal(options.modal);
     isShown = true;
